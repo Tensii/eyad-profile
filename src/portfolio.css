@@ -62,10 +62,21 @@ header {
 .glitch {
     font-family: var(--font-mono);
     font-size: 3rem;
-    font-weight: bold;
-    color: var(--text-color);
+    font-weight: 900;
+    color: #e0e0e0;
     position: relative;
     text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* neon glow baseline */
+    text-shadow:
+      0 0 10px rgba(0, 255, 170, 0.22),
+      0 0 28px rgba(0, 255, 170, 0.10);
+}
+
+/* "active" gets a brief extra punch (your JS toggles it) */
+.glitch.active {
+    animation: glitch-flicker 320ms steps(2, end) 1;
 }
 
 .glitch::before, .glitch::after {
@@ -75,21 +86,39 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-color);
+
+    /* IMPORTANT: keep transparent so the RGB split is visible */
+    background: transparent;
+    opacity: 0.95;
+    mix-blend-mode: screen;
 }
 
 .glitch::before {
     left: 2px;
-    text-shadow: -1px 0 red;
-    clip: rect(24px, 550px, 90px, 0);
+    text-shadow:
+      -2px 0 rgba(255, 0, 64, 0.9),
+      0 0 18px rgba(255, 0, 64, 0.12);
+    clip: rect(24px, 9999px, 90px, 0);
     animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 
 .glitch::after {
     left: -2px;
-    text-shadow: -1px 0 blue;
-    clip: rect(85px, 550px, 140px, 0);
+    text-shadow:
+      2px 0 rgba(0, 160, 255, 0.9),
+      0 0 18px rgba(0, 160, 255, 0.12);
+    clip: rect(85px, 9999px, 140px, 0);
     animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+/* when active, briefly intensify the RGB split */
+.glitch.active::before {
+  opacity: 1;
+  left: 3px;
+}
+.glitch.active::after {
+  opacity: 1;
+  left: -3px;
 }
 
 .subtitle {
@@ -348,21 +377,28 @@ footer {
 
 /* Animations */
 @keyframes glitch-anim {
-    0% { clip: rect(20px, 9999px, 80px, 0); }
-    20% { clip: rect(60px, 9999px, 10px, 0); }
-    40% { clip: rect(40px, 9999px, 90px, 0); }
-    60% { clip: rect(80px, 9999px, 30px, 0); }
-    80% { clip: rect(10px, 9999px, 50px, 0); }
-    100% { clip: rect(50px, 9999px, 20px, 0); }
+    0% { clip: rect(20px, 9999px, 80px, 0); transform: translate(0,0) skewX(0deg); }
+    20% { clip: rect(60px, 9999px, 10px, 0); transform: translate(-1px,0) skewX(-2deg); }
+    40% { clip: rect(40px, 9999px, 90px, 0); transform: translate(1px,0) skewX(1deg); }
+    60% { clip: rect(80px, 9999px, 30px, 0); transform: translate(-2px,0) skewX(-1deg); }
+    80% { clip: rect(10px, 9999px, 50px, 0); transform: translate(2px,0) skewX(2deg); }
+    100% { clip: rect(50px, 9999px, 20px, 0); transform: translate(0,0) skewX(0deg); }
 }
 
 @keyframes glitch-anim-2 {
-    0% { clip: rect(10px, 9999px, 60px, 0); }
-    20% { clip: rect(80px, 9999px, 20px, 0); }
-    40% { clip: rect(30px, 9999px, 10px, 0); }
-    60% { clip: rect(90px, 9999px, 40px, 0); }
-    80% { clip: rect(20px, 9999px, 80px, 0); }
-    100% { clip: rect(60px, 9999px, 30px, 0); }
+    0% { clip: rect(10px, 9999px, 60px, 0); transform: translate(0,0) skewX(0deg); }
+    20% { clip: rect(80px, 9999px, 20px, 0); transform: translate(1px,0) skewX(2deg); }
+    40% { clip: rect(30px, 9999px, 10px, 0); transform: translate(-1px,0) skewX(-2deg); }
+    60% { clip: rect(90px, 9999px, 40px, 0); transform: translate(2px,0) skewX(1deg); }
+    80% { clip: rect(20px, 9999px, 80px, 0); transform: translate(-2px,0) skewX(-1deg); }
+    100% { clip: rect(60px, 9999px, 30px, 0); transform: translate(0,0) skewX(0deg); }
+}
+
+@keyframes glitch-flicker {
+  0% { opacity: 1; filter: none; }
+  35% { opacity: 0.75; filter: contrast(1.15) saturate(1.2); }
+  60% { opacity: 1; filter: contrast(1.35) saturate(1.35); }
+  100% { opacity: 1; filter: none; }
 }
 
 /* Responsive */
