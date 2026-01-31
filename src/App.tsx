@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import './portfolio.css';
 
 type HofItem = {
@@ -475,6 +476,7 @@ function App() {
       <footer>
         <p>SYSTEM TERMINATED. COPYRIGHT 2026 @TENSI4.</p>
       </footer>
+      <Analytics />
     </>
   );
 }
