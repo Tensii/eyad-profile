@@ -88,8 +88,8 @@ const HOF_ITEMS: HofItem[] = useMemo(
       <header>
         <div className="container">
           <div className="glitch-wrapper" data-reveal>
-            <h1 className={`glitch ${glitchActive ? 'active' : ''}`} data-text="Eiad Ayoub">
-              Eiad Ayoub
+            <h1 className={`glitch ${glitchActive ? 'active' : ''}`} data-text="Eyad Ayoub">
+              Eyad Ayoub
             </h1>
           </div>
 
