@@ -1139,3 +1139,243 @@ footer {
   border-color: rgba(0, 255, 170, 0.6);
   background: rgba(0, 255, 170, 0.06);
 }
+
+
+
+/* ===========================
+   Experience section (HOF-style cards)
+=========================== */
+
+.exp-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.exp-card{
+  padding: 20px;
+  border-radius: 18px;
+
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.26);
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* same shine used in HOF/contact */
+.exp-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(650px 120px at 20% 0%, rgba(0,255,170,.14), transparent 55%);
+  opacity:.85;
+  pointer-events:none;
+}
+
+.exp-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(0,255,170,.55);
+  background: rgba(0,255,170,.05);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.32),
+    0 0 22px rgba(0,255,170,.12);
+}
+
+.exp-header{
+  display:flex;
+  justify-content: space-between;
+  align-items:flex-start;
+  margin-bottom:12px;
+}
+
+.exp-role{
+  font-weight:800;
+  font-size:1.05rem;
+}
+
+.exp-company{
+  opacity:.75;
+  font-size:.9rem;
+}
+
+.exp-date{
+  font-size:.85rem;
+  opacity:.7;
+}
+
+.exp-points{
+  padding-left:18px;
+  margin:0;
+  line-height:1.6;
+}
+
+.exp-points li{
+  margin-bottom:6px;
+}
+
+
+/* ===========================
+   Experience: vertical timeline (like 1bdool492)
+=========================== */
+
+.xp-timeline{
+  position: relative;
+  margin-top: 18px;
+  padding-left: 18px;
+}
+
+/* vertical line */
+.xp-timeline::before{
+  content:"";
+  position:absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,170,.0),
+    rgba(0,255,170,.22),
+    rgba(0,255,170,.0)
+  );
+}
+
+/* each item */
+.xp-item{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 0 16px;
+}
+
+/* dot on the line */
+.xp-dot{
+  position:absolute;
+  left: -2px;          /* lines up on the timeline */
+  top: 22px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,255,170,.35);
+  background: rgba(0,0,0,.65);
+  box-shadow: 0 0 18px rgba(0,255,170,.12);
+}
+
+/* inner card (HOF/contact vibe) */
+.xp-card{
+  margin-left: 20px;
+  padding: 18px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,255,170,.18);
+  background: rgba(0,0,0,.26);
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* shine like HOF/contact */
+.xp-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(650px 120px at 20% 0%, rgba(0,255,170,.14), transparent 55%);
+  opacity:.85;
+  pointer-events:none;
+}
+
+.xp-item:hover .xp-card{
+  transform: translateY(-4px);
+  border-color: rgba(0,255,170,.55);
+  background: rgba(0,255,170,.05);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.32),
+    0 0 22px rgba(0,255,170,.12);
+}
+
+.xp-item:hover .xp-dot{
+  border-color: rgba(0,255,170,.6);
+  box-shadow: 0 0 22px rgba(0,255,170,.18);
+}
+
+/* header row */
+.xp-top{
+  display:flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items:flex-start;
+  margin-bottom: 10px;
+}
+
+.xp-company{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.xp-role{
+  opacity: .8;
+  margin-top: 2px;
+}
+
+.xp-date{
+  opacity: .7;
+  font-size: .9rem;
+  white-space: nowrap;
+}
+
+.xp-summary{
+  margin: 0 0 12px;
+  opacity: .85;
+  line-height: 1.6;
+}
+
+.xp-subtitle{
+  font-weight: 800;
+  opacity: .8;
+  margin: 10px 0 6px;
+  letter-spacing: .2px;
+}
+
+.xp-points{
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.65;
+}
+
+.xp-points li{
+  margin: 6px 0;
+}
+
+/* small tags (like chips, but muted) */
+.xp-tags{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.xp-tag{
+  border: 1px solid rgba(0,255,170,.18);
+  background: rgba(0,0,0,.22);
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: .85rem;
+  opacity: .9;
+}
+
+/* mobile spacing */
+@media (max-width: 560px){
+  .xp-date{ white-space: normal; }
+}

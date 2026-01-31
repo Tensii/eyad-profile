@@ -65,6 +65,7 @@ const HOF_ITEMS: HofItem[] = useMemo(
   const navItems = useMemo(
     () => [
       { id: 'about', label: 'about_me' },
+      { id: 'experience', label: 'experience' },
       { id: 'hof', label: 'hall_of_fame' },
       { id: 'certs', label: 'certifications' },
       { id: 'skills', label: 'skills' },
@@ -143,6 +144,100 @@ const HOF_ITEMS: HofItem[] = useMemo(
             </p>
           </div>
         </section>
+
+
+<section id="experience" data-reveal>
+  <h2 className="section-title">&gt; ./experience</h2>
+
+  <div className="xp-timeline">
+    {[
+      {
+        company: 'Eastern Province Eamana',
+        role: 'Cyber Security Engineer',
+        date: '2025/01 – Present',
+        summary:
+          'Overseeing security operations for government hardware/software environments and driving security improvements across teams.',
+        points: [
+          'Led a team of 3 engineers to manage security posture and operational priorities.',
+          'Directed security assessments and technical decision-making for escalations.',
+          'Improved internal security workflows and reporting quality across engagements.',
+        ],
+        tags: ['Leadership', 'Security Operations', 'Risk', 'Governance'],
+      },
+      {
+        company: 'CyberGulf',
+        role: 'Penetration Tester',
+        date: '2024/09 – 2024/12',
+        summary:
+          'Delivered web/mobile/API security testing engagements and helped standardize testing processes and client scoping.',
+        points: [
+          'Performed penetration testing on Web, Mobile, and API targets across multiple clients.',
+          'Created internal guidelines to standardize testing methodology and reporting.',
+          'Bridged technical team and sales to ensure accurate scope and expectations.',
+        ],
+        tags: ['Web', 'Mobile', 'API', 'Reporting'],
+      },
+      {
+        company: 'Pentix',
+        role: 'Cybersecurity Consultant',
+        date: '2024/02 – 2025/02',
+        summary:
+          'Consulted on multi-surface security assessments, focusing on actionable remediation and measurable risk reduction.',
+        points: [
+          'Assessed Web, Mobile, API, Network, and Thick Client applications.',
+          'Translated findings into clear remediation plans for dev/infra teams.',
+          'Researched emerging threats to keep testing coverage current.',
+        ],
+        tags: ['Assessments', 'Threat Research', 'Remediation'],
+      },
+      {
+        company: 'Resecurity (USA)',
+        role: 'Security Researcher',
+        date: '2022/12 – 2023/12',
+        summary:
+          'Conducted vulnerability identification and audits with a focus on intelligence-driven research and automation.',
+        points: [
+          'Identified vulnerabilities using cyber intelligence techniques and testing.',
+          'Conducted network/security audits and documented risks and mitigations.',
+          'Automated scanning to surface potential security threats at scale.',
+        ],
+        tags: ['Research', 'Automation', 'Auditing'],
+      },
+    ].map((job) => (
+      <article key={`${job.company}-${job.role}`} className="xp-item card-hover">
+        <div className="xp-dot" aria-hidden="true" />
+
+        <div className="xp-card">
+          <div className="xp-top">
+            <div className="xp-title">
+              <div className="xp-company">{job.company}</div>
+              <div className="xp-role">{job.role}</div>
+            </div>
+            <div className="xp-date">{job.date}</div>
+          </div>
+
+          <p className="xp-summary">{job.summary}</p>
+
+          <div className="xp-subtitle">Responsibilities</div>
+          <ul className="xp-points">
+            {job.points.map((p, i) => (
+              <li key={i}>{p}</li>
+            ))}
+          </ul>
+
+          <div className="xp-tags">
+            {job.tags.map((t) => (
+              <span key={t} className="xp-tag">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
 
         {/* ✅ Hall of Fame cards with CDN logos */}
         <section id="hof" data-reveal>
