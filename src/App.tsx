@@ -394,6 +394,10 @@ function App() {
                 { name: 'Kali Linux', icon: 'https://cdn.simpleicons.org/kalilinux/000000' },
                 { name: 'Wireshark', icon: 'https://cdn.simpleicons.org/wireshark/000000' },
                 { name: 'Python', icon: 'https://cdn.simpleicons.org/python/000000' },
+                { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/000000' },
+                { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/000000' },
+                { name: 'C/C++', icon: 'https://cdn.simpleicons.org/cplusplus/000000' },
+                { name: 'Go', icon: 'https://cdn.simpleicons.org/go/000000' },
                 { name: 'PowerShell', icon: 'https://cdn.simpleicons.org/powershell/000000' },
                 { name: 'Bash Scripting', icon: 'https://cdn.simpleicons.org/gnubash/000000' },
               ].map((s) => (
