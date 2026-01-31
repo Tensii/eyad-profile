@@ -1,0 +1,1141 @@
+:root {
+    --bg-color: #0d0d0d;
+    --text-color: #e0e0e0;
+    --accent-color: #00ff41; /* Hacker Green */
+    --accent-dim: #008f11;
+    --card-bg: #111;
+    --border-color: #333;
+    --font-mono: 'Courier New', Courier, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* CRT Effect */
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 999;
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 65, 0.04) 50%, rgba(0,0,0,0) 100%);
+    opacity: 0.1;
+    position: fixed;
+    bottom: 100%;
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline {
+    0% { bottom: 100%; }
+    100% { bottom: -100%; }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 40px;
+}
+
+.glitch-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch {
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--text-color);
+    position: relative;
+    text-transform: uppercase;
+}
+
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+}
+
+.subtitle {
+    color: #888;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+}
+
+.status {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    margin-right: 5px;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Sections */
+.section-title {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+/* Terminal Card */
+.terminal-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    position: relative;
+}
+
+.prompt {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+/* Stats */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.stat-box {
+    background: var(--card-bg);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+}
+
+/* Experience */
+.timeline {
+    border-left: 2px solid var(--border-color);
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.job-card {
+    background: var(--card-bg);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    position: relative;
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    left: -27px;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 50%;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.job-header h3 {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.job-header .company {
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+}
+
+.job-header .date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.job-card ul {
+    list-style-position: inside;
+    color: #ccc;
+}
+
+/* Hall of Fame */
+.hof-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.hof-grid span {
+    background: #1a1a1a;
+    border: 1px solid var(--accent-dim);
+    color: var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+/* HOF: small subtitle line under title */
+.hof-kicker{
+  text-align: center;
+  margin: 10px 0 18px;
+  opacity: 0.75;
+  letter-spacing: .4px;
+}
+
+.hof-count{
+  color: rgba(0, 255, 170, 0.95);
+  text-shadow: 0 0 12px rgba(0, 255, 170, 0.22);
+  font-weight: 800;
+}
+
+/* HOF: slightly bigger cards (not huge) */
+.hof-card{
+  padding: 18px 18px;           /* was smaller */
+  border-radius: 18px;
+}
+
+.hof-logo-wrap{
+  width: 62px;                  /* slightly larger */
+  height: 62px;
+  border-radius: 16px;
+}
+
+.hof-logo{
+  width: 34px;                  /* logo a bit larger */
+  height: 34px;
+}
+
+/* remove extra vertical space if hof-sub styles exist elsewhere */
+.hof-sub{
+  display: none !important;
+}
+
+/* Certs */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+}
+
+.cert-card i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+/* Skills */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill-tags span {
+    background: #222;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    border: 1px solid #444;
+}
+
+/* Contact */
+.contact-box {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 10px 20px;
+    margin: 10px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    border-top: 1px solid #222;
+}
+
+/* Animations */
+@keyframes glitch-anim {
+    0% { clip: rect(20px, 9999px, 80px, 0); }
+    20% { clip: rect(60px, 9999px, 10px, 0); }
+    40% { clip: rect(40px, 9999px, 90px, 0); }
+    60% { clip: rect(80px, 9999px, 30px, 0); }
+    80% { clip: rect(10px, 9999px, 50px, 0); }
+    100% { clip: rect(50px, 9999px, 20px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(10px, 9999px, 60px, 0); }
+    20% { clip: rect(80px, 9999px, 20px, 0); }
+    40% { clip: rect(30px, 9999px, 10px, 0); }
+    60% { clip: rect(90px, 9999px, 40px, 0); }
+    80% { clip: rect(20px, 9999px, 80px, 0); }
+    100% { clip: rect(60px, 9999px, 30px, 0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .glitch { font-size: 2rem; }
+    .job-header { flex-direction: column; align-items: flex-start; }
+    .job-header .date { margin-top: 5px; }
+}
+
+
+/* ---------------------------
+   Micro-interactions & Animations
+---------------------------- */
+
+/* Reveal on scroll */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover effect (use on anything) */
+.card-hover {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  will-change: transform;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 255, 170, 0.12);
+  border-color: rgba(0, 255, 170, 0.45);
+}
+
+/* Quick nav */
+.quick-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  justify-content: center;
+}
+
+.nav-chip {
+  border: 1px solid rgba(0, 255, 170, 0.22);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 255, 170, 0.9);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.nav-chip:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 255, 170, 0.55);
+  box-shadow: 0 10px 22px rgba(0, 255, 170, 0.10);
+  background: rgba(0, 255, 170, 0.06);
+}
+
+.nav-chip.active {
+  border-color: rgba(0, 255, 170, 0.75);
+  box-shadow: 0 12px 26px rgba(0, 255, 170, 0.16);
+}
+
+.chip-prefix {
+  opacity: 0.9;
+  margin-right: 6px;
+}
+
+/* Hall of Fame chips */
+.hof-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 170, 0.20);
+  background: rgba(0, 0, 0, 0.25);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+.hof-chip:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 170, 0.55);
+  background: rgba(0, 255, 170, 0.06);
+  box-shadow: 0 10px 22px rgba(0, 255, 170, 0.10);
+}
+
+/* Skill tags look more like interactive pills */
+.tag {
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 999px;
+  padding: 10px 12px;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.tag:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 255, 170, 0.55);
+  background: rgba(0, 255, 170, 0.06);
+  box-shadow: 0 10px 18px rgba(0, 255, 170, 0.08);
+}
+
+/* Buttons glow + press */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.btn-glow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 255, 170, 0.12);
+  border-color: rgba(0, 255, 170, 0.55);
+}
+.btn-glow:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* Subtle shimmer sweep */
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 60%;
+  height: 180%;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 170, 0) 0%,
+    rgba(0, 255, 170, 0.16) 50%,
+    rgba(0, 255, 170, 0) 100%
+  );
+  transition: left 520ms ease;
+  pointer-events: none;
+}
+.btn-glow:hover::after {
+  left: 120%;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .card-hover,
+  .nav-chip,
+  .hof-chip,
+  .tag,
+  .btn-glow,
+  .btn-glow::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* ---------------------------
+   Hall of Fame Cards (CDN logos + theme green tint)
+---------------------------- */
+
+/* Bigger grid + responsive */
+.hof-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+
+@media (max-width: 900px){
+  .hof-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .hof-grid{ grid-template-columns: 1fr; }
+}
+
+
+.hof-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 14px;
+}
+
+@media (max-width: 980px) {
+  .hof-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .hof-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hof-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 170, 0.20);
+  background: rgba(0, 0, 0, 0.24);
+  position: relative;
+  overflow: hidden;
+}
+
+.hof-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(650px 120px at 20% 0%, rgba(0, 255, 170, 0.16), transparent 55%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hof-logo-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.30);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.hof-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+/* Tint monochrome SVGs to neon-green (works great with SimpleIcons) */
+.hof-logo--tint {
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(72%)
+    saturate(520%)
+    hue-rotate(85deg)
+    brightness(104%)
+    contrast(105%);
+}
+
+.hof-logo-wrap--fallback .hof-fallback {
+  opacity: 1;
+}
+
+.hof-fallback {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  color: rgba(0, 255, 170, 0.95);
+  background: rgba(0, 255, 170, 0.06);
+  font-weight: 800;
+  opacity: 0; /* only shows if image fails */
+}
+
+.hof-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hof-name {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hof-sub {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+
+/* Animated glow layer */
+.hof-card-glow{
+  position:absolute;
+  inset:-40px;
+  background:
+    radial-gradient(220px 120px at 25% 25%, rgba(43,255,136,.22), transparent 60%),
+    radial-gradient(240px 120px at 80% 70%, rgba(43,255,136,.14), transparent 55%);
+  filter: blur(8px);
+  opacity: .0;
+  transition: opacity .18s ease;
+  pointer-events:none;
+}
+
+.hof-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(43,255,136,.65);
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.35),
+    0 0 22px rgba(43,255,136,.18);
+}
+.hof-card:hover .hof-card-glow{ opacity: 1; }
+
+
+/* ---------------------------
+   Skills & Tools - Logo Cards (CDN + green tint + glow)
+---------------------------- */
+
+.skill-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+@media (max-width: 980px){
+  .skill-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px){
+  .skill-grid{ grid-template-columns: 1fr; }
+}
+
+.skill-card{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 170, 0.20);
+  background: rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(520px 120px at 15% 0%, rgba(0, 255, 170, 0.14), transparent 55%);
+  opacity: .9;
+  pointer-events:none;
+}
+
+.skill-logo-wrap{
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.30);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.skill-logo{
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: .95;
+}
+
+/* same neon tint approach used in your HOF rules */
+.skill-logo--tint{
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(72%)
+    saturate(520%)
+    hue-rotate(85deg)
+    brightness(104%)
+    contrast(105%);
+}
+
+.skill-logo-wrap--fallback .skill-fallback{
+  opacity: 1;
+}
+
+.skill-fallback{
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  color: rgba(0, 255, 170, 0.95);
+  background: rgba(0, 255, 170, 0.06);
+  font-weight: 800;
+  opacity: 0; /* only shows if image fails */
+}
+
+.skill-name{
+  font-weight: 800;
+  letter-spacing: .15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* extra glow on hover (matches HOF vibe) */
+.skill-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(43,255,136,.65);
+  box-shadow:
+    0 10px 26px rgba(0,0,0,.35),
+    0 0 22px rgba(43,255,136,.18);
+}
+
+
+/* ===========================
+   Skills chips: override old ".skill-tags span" rule
+   and make layout packed (no empty gaps)
+=========================== */
+
+.skill-tags{
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 14px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* this beats ".skill-tags span { background:#222 ... }" */
+.skill-tags span.tag{
+  background: rgba(0, 0, 0, 0.22) !important;
+  border: 1px solid rgba(0, 255, 170, 0.18) !important;
+  border-radius: 999px !important;
+
+  padding: 10px 12px !important;
+  width: auto !important;
+  max-width: 100%;
+
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+
+  line-height: 1;
+  font-size: 0.92rem;
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* subtle HOF-like shine */
+.skill-tags span.tag::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(420px 90px at 18% 0%, rgba(0, 255, 170, 0.14), transparent 60%);
+  opacity: .8;
+  pointer-events:none;
+}
+
+.skill-tags span.tag:hover{
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 170, 0.55) !important;
+  background: rgba(0, 255, 170, 0.06) !important;
+  box-shadow: 0 10px 18px rgba(0, 255, 170, 0.08);
+}
+
+.tag-icon{
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  opacity: 0.95;
+}
+
+.tag-icon--tint{
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(72%)
+    saturate(520%)
+    hue-rotate(85deg)
+    brightness(104%)
+    contrast(105%);
+}
+
+
+/* ===========================
+   Contact cards - smooth HOF-like
+=========================== */
+
+.contact-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* card */
+.contact-card{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 16px 18px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.26);
+
+  text-decoration: none;
+  color: inherit;
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* subtle HOF shine */
+.contact-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(650px 120px at 20% 0%, rgba(0, 255, 170, 0.16), transparent 55%);
+  opacity:.85;
+  pointer-events:none;
+}
+
+/* hover */
+.contact-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 170, 0.55);
+  background: rgba(0, 255, 170, 0.05);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.32),
+    0 0 22px rgba(0, 255, 170, 0.14);
+}
+
+.contact-card:active{
+  transform: translateY(-2px) scale(0.99);
+}
+
+/* icon plate */
+.contact-icon{
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+
+  line-height: 1;
+
+  border: 1px solid rgba(0, 255, 170, 0.20);
+  background: rgba(0, 0, 0, 0.35);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 18px;
+  color: rgba(0, 255, 170, 0.9);
+
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.contact-card:hover .contact-icon{
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(0, 255, 170, 0.25);
+}
+
+/* text */
+.contact-meta{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label{
+  font-size: 0.8rem;
+  opacity: 0.7;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.contact-value{
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.contact-icon i{
+  display: block;
+  line-height: 1;
+}
+
+/* Envelope is visually "top heavy" so we nudge it a bit */
+.contact-icon .fa-envelope{
+  transform: translateY(1px);
+}
+
+
+.contact-icon-svg{
+  width: 22px;
+  height: 22px;
+
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(78%)
+    sepia(72%)
+    saturate(520%)
+    hue-rotate(85deg)
+    brightness(104%)
+    contrast(105%);
+}
+
+
+/* ===========================
+   About: terminal typewriter + 2s cursor blink
+=========================== */
+
+/* typing effect */
+.typewriter{
+  display: inline-block;
+  white-space: normal;          /* allows wrapping */
+  overflow: hidden;             /* hides until revealed */
+  border-right: 0;              /* cursor handled separately */
+  max-width: 0;                 /* start hidden */
+  vertical-align: top;
+
+  /* animation starts when element exists (you already reveal it on scroll) */
+  animation: tw-reveal 2.2s steps(var(--tw-steps, 220)) 0.8s forwards;
+}
+
+/* Expand max-width from 0 to full; steps makes it look like typing */
+@keyframes tw-reveal{
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
+/* cursor blink every 2 seconds */
+.cursor{
+  display: inline-block;
+  margin-left: 6px;
+  color: rgba(0, 255, 170, 0.95);
+  animation: cursor-blink 2s steps(1, end) infinite;
+}
+
+@keyframes cursor-blink{
+  0%, 49%  { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .typewriter{ animation: none; max-width: 100%; }
+  .cursor{ animation: none; opacity: 1; }
+}
+
+/* ===========================
+   About: type "cat summary.txt" THEN type summary + cursor at end
+=========================== */
+
+.tw-cmd,
+.tw-body {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  max-width: 0; /* start hidden */
+  white-space: nowrap; /* command must stay on one line */
+}
+
+/* 1) Type the command */
+.tw-cmd {
+  animation: tw-reveal-cmd var(--cmd-dur, 0.9s) steps(var(--cmd-steps, 14)) 0.15s forwards;
+}
+
+@keyframes tw-reveal-cmd {
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
+/* newline after command */
+.tw-newline {
+  display: block;
+  height: 12px; /* spacing like <br/><br/> */
+}
+
+/* 2) Type the body after the command finishes */
+.tw-body {
+  /* allow wrapping for the summary (unlike the command) */
+  white-space: normal;
+
+  animation: tw-reveal-body var(--body-dur, 2.5s) steps(var(--body-steps, 260))
+    calc(0.15s + var(--cmd-dur, 0.9s)) forwards;
+}
+
+@keyframes tw-reveal-body {
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
+/* Cursor at the end of the typed summary */
+.cursor {
+  display: inline-block;
+  margin-left: 6px;
+  color: rgba(0, 255, 170, 0.95);
+  animation: cursor-blink 2s steps(1, end) infinite;
+}
+
+@keyframes cursor-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .tw-cmd,
+  .tw-body {
+    animation: none !important;
+    max-width: 100% !important;
+  }
+  .cursor {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+/* Certifications use HOF cards but are links */
+.cert-link{
+  text-decoration: none;
+  color: inherit;
+  display: flex; /* ensures the <a> behaves like the <article> layout */
+  position: relative;
+}
+
+/* Subtle "this is a link" indicator */
+.cert-link::after{
+  content: '↗';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 255, 170, 0.85);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  pointer-events: none;
+}
+
+.cert-link:hover::after{
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(0, 255, 170, 0.6);
+  background: rgba(0, 255, 170, 0.06);
+}
