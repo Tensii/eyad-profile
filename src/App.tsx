@@ -274,6 +274,7 @@ function App() {
                     src={c.logo}
                     alt=""
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       const img = e.currentTarget as HTMLImageElement;
                       img.style.display = 'none';
@@ -333,6 +334,7 @@ function App() {
                     src={cert.logo}
                     alt=""
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       const img = e.currentTarget as HTMLImageElement;
                       img.style.display = 'none';
@@ -401,6 +403,7 @@ function App() {
                     src={s.icon}
                     alt=""
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       (e.currentTarget as HTMLImageElement).style.display = 'none';
                     }}
@@ -448,7 +451,8 @@ function App() {
               >
                 <div className="contact-icon">
                   {c.iconSvg ? (
-                    <img src={c.iconSvg} className="contact-icon-svg" alt="" />
+                    <img
+                    decoding="async" src={c.iconSvg} className="contact-icon-svg" alt="" />
                   ) : (
                     <i className={c.icon} />
                   )}
