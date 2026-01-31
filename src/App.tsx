@@ -124,6 +124,9 @@ function App() {
       <main className="container">
         <section id="about" data-reveal>
           <h2 className="section-title">&gt; ./about_me</h2>
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">cd about_me && cat summary.txt</span>
+          </div>
 
           <div className="terminal-card card-hover">
             <p>
@@ -156,6 +159,10 @@ function App() {
 
         <section id="experience" data-reveal>
           <h2 className="section-title">&gt; ./experience</h2>
+
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">cd experience && tail -n +1 timeline.log</span>
+          </div>
 
           <div className="xp-timeline">
             {[
@@ -250,6 +257,10 @@ function App() {
         <section id="hof" data-reveal>
           <h2 className="section-title">&gt; ./hall_of_fame</h2>
 
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">cat hall_of_fame.txt</span>
+          </div>
+
           <p className="hof-kicker">
             Acknowledged by <span className="hof-count">25+</span> major companies around the globe
           </p>
@@ -283,6 +294,10 @@ function App() {
 
         <section id="certs" data-reveal>
           <h2 className="section-title">&gt; ./certifications</h2>
+
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">ls -la certs/ && open links</span>
+          </div>
 
           <div className="hof-cards">
             {[
@@ -340,6 +355,10 @@ function App() {
         <section id="skills" data-reveal>
           <h2 className="section-title">&gt; ./skills_and_tools</h2>
 
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">./list_skills_and_tools.sh</span>
+          </div>
+
           <div className="terminal-card card-hover">
             <p>
               <span className="prompt">root@tensi:~#</span> list_skills_and_tools.sh
@@ -395,6 +414,10 @@ function App() {
 
         <section id="contact" data-reveal>
           <h2 className="section-title">&gt; ./contact</h2>
+
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">init_comms --secure</span>
+          </div>
 
           <div className="contact-grid">
             {[

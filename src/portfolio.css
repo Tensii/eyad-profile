@@ -127,6 +127,34 @@ header {
     font-family: var(--font-mono);
 }
 
+/* Section mini command line */
+.section-cmd{
+  margin: -8px 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: rgba(0,255,170,0.75);
+  opacity: 0.9;
+}
+.section-cmd .cmd{
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  vertical-align: bottom;
+
+  border-right: 2px solid rgba(0,255,170,0.55);
+  padding-right: 6px;
+
+  width: 0;
+  animation: section-cmd-type 1.4s steps(28, end) forwards;
+}
+@keyframes section-cmd-type{
+  to { width: 40ch; }
+}
+@media (prefers-reduced-motion: reduce){
+  .section-cmd .cmd{ animation: none; width: auto; border-right: none; }
+}
+
 .status {
     margin-top: 20px;
     font-size: 0.8rem;
@@ -1557,4 +1585,39 @@ footer {
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+}
+
+/* ===========================
+   Ambient background (subtle noise + vignette)
+=========================== */
+.overlay{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+
+  /* vignette + soft green tint */
+  background:
+    radial-gradient(900px 380px at 50% 0%, rgba(0,255,170,0.06), transparent 60%),
+    radial-gradient(1200px 800px at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%),
+    /* faux-noise (cheap, fast): layered micro-gradients */
+    repeating-linear-gradient(0deg,
+      rgba(255,255,255,0.014) 0px,
+      rgba(255,255,255,0.014) 1px,
+      rgba(0,0,0,0.00) 2px,
+      rgba(0,0,0,0.00) 4px
+    );
+
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+  animation: overlay-drift 10s linear infinite;
+}
+
+@keyframes overlay-drift{
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 0, 0 180px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .overlay{ animation: none; }
 }
