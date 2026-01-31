@@ -1140,6 +1140,13 @@ footer {
   background: rgba(0, 255, 170, 0.06);
 }
 
+/* On touch devices (no hover), keep the external-link indicator visible */
+@media (hover: none), (pointer: coarse) {
+  .cert-link::after{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
 /* ===========================
