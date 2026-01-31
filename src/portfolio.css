@@ -410,27 +410,86 @@ footer {
 }
 
 .nav-chip {
-  border: 1px solid rgba(0, 255, 170, 0.22);
-  background: rgba(0, 0, 0, 0.35);
-  color: rgba(0, 255, 170, 0.9);
-  padding: 10px 12px;
-  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+
+  /* match HOF/contact card surfaces */
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 255, 170, 0.92);
+
+  padding: 12px 14px;
+  border-radius: 16px;
+
   cursor: pointer;
-  font-family: inherit;
+  font-family: var(--font-mono);
   letter-spacing: 0.3px;
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* subtle HOF shine (same as cards) */
+.nav-chip::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(650px 120px at 20% 0%, rgba(0, 255, 170, 0.16), transparent 55%);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* hover sweep (extra polish) */
+.nav-chip::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(0, 255, 170, 0.00) 35%,
+    rgba(0, 255, 170, 0.14) 50%,
+    rgba(0, 255, 170, 0.00) 65%,
+    transparent 100%
+  );
+  transform: translateX(-130%) skewX(-18deg);
+  opacity: 0;
+  transition: transform 520ms ease, opacity 220ms ease;
+  pointer-events: none;
 }
 
 .nav-chip:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: rgba(0, 255, 170, 0.55);
-  box-shadow: 0 10px 22px rgba(0, 255, 170, 0.10);
-  background: rgba(0, 255, 170, 0.06);
+  background: rgba(0, 255, 170, 0.05);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.32),
+    0 0 22px rgba(0, 255, 170, 0.14);
+}
+
+.nav-chip:hover::after {
+  opacity: 1;
+  transform: translateX(130%) skewX(-18deg);
+}
+
+.nav-chip:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
+.nav-chip:focus-visible {
+  outline: 2px solid rgba(0, 255, 170, 0.75);
+  outline-offset: 3px;
 }
 
 .nav-chip.active {
-  border-color: rgba(0, 255, 170, 0.75);
-  box-shadow: 0 12px 26px rgba(0, 255, 170, 0.16);
+  border-color: rgba(0, 255, 170, 0.70);
+  background: rgba(0, 255, 170, 0.07);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.32),
+    0 0 26px rgba(0, 255, 170, 0.16);
 }
 
 .chip-prefix {
@@ -1138,4 +1197,117 @@ footer {
   transform: translateY(0);
   border-color: rgba(0, 255, 170, 0.6);
   background: rgba(0, 255, 170, 0.06);
+}
+
+
+/* ===========================
+   Quick nav: HOF/contact-like cards
+=========================== */
+
+.quick-nav{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.nav-card{
+  appearance: none;
+  border: 1px solid rgba(0, 255, 170, 0.18);
+  background: rgba(0, 0, 0, 0.26);
+  border-radius: 16px;
+
+  padding: 12px 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: inherit;
+  text-align: left;
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* HOF-like shine */
+.nav-card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(520px 120px at 20% 0%, rgba(0, 255, 170, 0.14), transparent 60%);
+  opacity: .85;
+  pointer-events: none;
+}
+
+.nav-card-prefix{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(0, 255, 170, 0.20);
+  background: rgba(0, 0, 0, 0.35);
+
+  color: rgba(0, 255, 170, 0.92);
+  font-weight: 800;
+
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav-card-path{
+  font-weight: 800;
+  letter-spacing: .25px;
+  opacity: .92;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-card:hover{
+  transform: translateY(-3px);
+  border-color: rgba(0, 255, 170, 0.55);
+  background: rgba(0, 255, 170, 0.05);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.30),
+    0 0 20px rgba(0, 255, 170, 0.12);
+}
+
+.nav-card:hover .nav-card-prefix{
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(0, 255, 170, 0.20);
+}
+
+.nav-card:active{
+  transform: translateY(-2px) scale(0.99);
+}
+
+/* Active state like "selected card" */
+.nav-card.is-active{
+  border-color: rgba(0, 255, 170, 0.72);
+  background: rgba(0, 255, 170, 0.08);
+  box-shadow: 0 0 22px rgba(0, 255, 170, 0.16);
+}
+
+.nav-card.is-active .nav-card-prefix{
+  border-color: rgba(0, 255, 170, 0.55);
+  background: rgba(0, 255, 170, 0.10);
+}
+
+/* Mobile tightening */
+@media (max-width: 520px){
+  .quick-nav{
+    grid-template-columns: 1fr;
+  }
 }

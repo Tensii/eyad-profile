@@ -100,18 +100,22 @@ const HOF_ITEMS: HofItem[] = useMemo(
             <span className="indicator online" /> SYSTEM ONLINE
           </div>
 
-          <nav className="quick-nav" aria-label="Section navigation" data-reveal>
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                className={`nav-chip ${activeSection === item.id ? 'active' : ''}`}
-                onClick={() => scrollToSection(item.id)}
-              >
-                <span className="chip-prefix">&gt;</span> ./{item.label}
-              </button>
-            ))}
-          </nav>
+<nav className="quick-nav" aria-label="Section navigation" data-reveal>
+  {navItems.map((item) => (
+    <button
+      key={item.id}
+      type="button"
+      className={`nav-card ${activeSection === item.id ? 'is-active' : ''}`}
+      onClick={() => scrollToSection(item.id)}
+    >
+      <span className="nav-card-prefix" aria-hidden="true">
+        &gt;
+      </span>
+      <span className="nav-card-path">./{item.label}</span>
+    </button>
+  ))}
+</nav>
+
         </div>
       </header>
 
@@ -310,7 +314,7 @@ const HOF_ITEMS: HofItem[] = useMemo(
               {
                 label: 'LinkedIn',
                 value: 'View Profile',
-                href: '#',
+                href: 'https://www.linkedin.com/in/tensi4',
                 icon: 'fab fa-linkedin',
               },
             ].map((c) => (
