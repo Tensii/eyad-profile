@@ -158,6 +158,17 @@ section {
     margin-bottom: 60px;
 }
 
+/* About section actions (CV button) */
+.about-actions{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+.about-actions .contact-card{
+  max-width: 420px;
+  width: 100%;
+}
+
 /* Terminal Card */
 .terminal-card {
     background-color: var(--card-bg);
@@ -1184,6 +1195,42 @@ footer {
   }
 }
 
+/* CV download card: show "download" indicator like certs */
+.cv-link::after{
+  content: '↓';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 170, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 255, 170, 0.85);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  pointer-events: none;
+}
+
+.cv-link:hover::after{
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(0, 255, 170, 0.6);
+  background: rgba(0, 255, 170, 0.06);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cv-link::after{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* ===========================
    Experience section (HOF-style cards)
@@ -1310,6 +1357,80 @@ footer {
   border: 1px solid rgba(0,255,170,.35);
   background: rgba(0,0,0,.65);
   box-shadow: 0 0 18px rgba(0,255,170,.12);
+  transition: box-shadow 260ms ease, border-color 260ms ease, transform 260ms ease;
+}
+
+/* dot glow when revealed on scroll */
+.xp-item.is-visible .xp-dot{
+  border-color: rgba(0,255,170,.70);
+  box-shadow: 0 0 28px rgba(0,255,170,.28), 0 0 14px rgba(0,255,170,.18);
+}
+
+/* Animated connector to next dot (reveals when each item becomes visible)
+   IMPORTANT: must be on .xp-item (not on .xp-dot) so 100% refers to the item height. */
+.xp-item::after{
+  content:"";
+  position:absolute;
+  left: 7px;                 /* center of the timeline line (matches ::before at left:8px) */
+  top: 40px;                 /* just below the dot */
+  bottom: -26px;             /* extend further to reliably reach the next dot */
+  width: 2px;
+
+  transform: scaleY(0);
+  transform-origin: top;
+
+  /* base line */
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,170,0.0),
+    rgba(0,255,170,0.55),
+    rgba(0,255,170,0.10)
+  );
+
+  box-shadow: 0 0 18px rgba(0,255,170,0.18);
+
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events:none;
+}
+
+/* moving pulse to avoid "static" feel */
+.xp-item::before{
+  content:"";
+  position:absolute;
+  left: 7px;
+  top: 40px;
+  bottom: -26px;
+  width: 2px;
+
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,255,170,0.0),
+    rgba(0,255,170,0.9),
+    rgba(0,255,170,0.0)
+  );
+
+  transform: translateY(-18px);
+  pointer-events:none;
+}
+
+.xp-item.is-visible::before{
+  opacity: 0.55;
+  animation: xp-line-pulse 1.4s linear infinite;
+}
+
+@keyframes xp-line-pulse{
+  0%   { transform: translateY(-18px); }
+  100% { transform: translateY(42px); }
+}
+
+.xp-item.is-visible::after{
+  transform: scaleY(1);
+}
+
+/* last item should not draw a connector below */
+.xp-item:last-child::after{
+  display:none;
 }
 
 /* inner card (HOF/contact vibe) */
@@ -1416,9 +1537,24 @@ footer {
   padding: 7px 10px;
   font-size: .85rem;
   opacity: .9;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.xp-tag:hover{
+  transform: translateY(-2px);
+  border-color: rgba(0,255,170,.55);
+  background: rgba(0,255,170,.06);
+  box-shadow: 0 10px 18px rgba(0,255,170,.10), 0 0 18px rgba(0,255,170,.14);
 }
 
 /* mobile spacing */
 @media (max-width: 560px){
   .xp-date{ white-space: normal; }
+}
+
+/* Navbar CV chip (link) should look identical to other nav chips */
+.nav-chip--cv{
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }

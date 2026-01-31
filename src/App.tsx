@@ -11,7 +11,7 @@ function App() {
   const [activeSection, setActiveSection] = useState<string>('about');
 
   // Hall of Fame items (ALL CDN logos)
-const HOF_ITEMS: HofItem[] = useMemo(
+  const HOF_ITEMS: HofItem[] = useMemo(
     () => [
       { name: 'Google VRP', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg' },
       { name: 'Sony', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/sony.svg' },
@@ -22,13 +22,13 @@ const HOF_ITEMS: HofItem[] = useMemo(
       { name: 'Marriott', logo: 'https://cdn.simpleicons.org/marriott/000000' },
       { name: 'SHEIN', logo: 'https://img.icons8.com/ios-filled/50/000000/shein.png' },
       { name: 'JetBlue', logo: 'https://cdn.simpleicons.org/jetblue/000000' },
-      
+
       // FIX FOR PFIZER: Using a direct SVG placeholder service
       { name: 'Pfizer', logo: '/pfizer.svg' },
-      
+
       // FIX FOR GLOBAL: Using a reliable transparent PNG placeholder
       { name: 'Global', logo: '/global.png' },
-      
+
       { name: 'Montea', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/homeassistant.svg' },
     ],
     []
@@ -112,6 +112,11 @@ const HOF_ITEMS: HofItem[] = useMemo(
                 <span className="chip-prefix">&gt;</span> ./{item.label}
               </button>
             ))}
+
+            {/* CV download lives in the navbar (same style as the other chips) */}
+            <a href="/eyad-ayoub-cv.pdf" className="nav-chip nav-chip--cv" download>
+              <span className="chip-prefix">&gt;</span> ./download_cv
+            </a>
           </nav>
         </div>
       </header>
@@ -136,7 +141,11 @@ const HOF_ITEMS: HofItem[] = useMemo(
                   ['--cmd-dur' as any]: '0.9s', // must match tw-cmd --cmd-dur
                 }}
               >
-                Experienced Penetration Tester with over 4 years of practical experience performing in-depth security assessments across web, mobile, API, network, and thick client environments. Proven ability to uncover complex vulnerabilities through advanced exploitation techniques, deep protocol and application analysis, and meticulous threat modeling. Adept at translating technical findings into clear, actionable remediation strategies for development and infrastructure teams. Continuously engaged in cybersecurity research, staying ahead of emerging attack vectors and evolving offensive methodologies…
+                Experienced Penetration Tester with over 4 years of practical experience performing in-depth security assessments across
+                web, mobile, API, network, and thick client environments. Proven ability to uncover complex vulnerabilities through advanced
+                exploitation techniques, deep protocol and application analysis, and meticulous threat modeling. Adept at translating
+                technical findings into clear, actionable remediation strategies for development and infrastructure teams. Continuously
+                engaged in cybersecurity research, staying ahead of emerging attack vectors and evolving offensive methodologies…
                 <span className="cursor" aria-hidden="true">
                   █
                 </span>
@@ -145,99 +154,97 @@ const HOF_ITEMS: HofItem[] = useMemo(
           </div>
         </section>
 
+        <section id="experience" data-reveal>
+          <h2 className="section-title">&gt; ./experience</h2>
 
-<section id="experience" data-reveal>
-  <h2 className="section-title">&gt; ./experience</h2>
+          <div className="xp-timeline">
+            {[
+              {
+                company: 'Eastern Province Eamana',
+                role: 'Cyber Security Engineer',
+                date: '2025/01 – Present',
+                summary:
+                  'Overseeing security operations for government hardware/software environments and driving security improvements across teams.',
+                points: [
+                  'Led a team of 3 engineers to manage security posture and operational priorities.',
+                  'Directed security assessments and technical decision-making for escalations.',
+                  'Improved internal security workflows and reporting quality across engagements.',
+                ],
+                tags: ['Leadership', 'Security Operations', 'Risk', 'Governance'],
+              },
+              {
+                company: 'CyberGulf',
+                role: 'Penetration Tester',
+                date: '2024/09 – 2024/12',
+                summary:
+                  'Delivered web/mobile/API security testing engagements and helped standardize testing processes and client scoping.',
+                points: [
+                  'Performed penetration testing on Web, Mobile, and API targets across multiple clients.',
+                  'Created internal guidelines to standardize testing methodology and reporting.',
+                  'Bridged technical team and sales to ensure accurate scope and expectations.',
+                ],
+                tags: ['Web', 'Mobile', 'API', 'Reporting'],
+              },
+              {
+                company: 'Pentix',
+                role: 'Cybersecurity Consultant',
+                date: '2024/02 – 2025/02',
+                summary:
+                  'Consulted on multi-surface security assessments, focusing on actionable remediation and measurable risk reduction.',
+                points: [
+                  'Assessed Web, Mobile, API, Network, and Thick Client applications.',
+                  'Translated findings into clear remediation plans for dev/infra teams.',
+                  'Researched emerging threats to keep testing coverage current.',
+                ],
+                tags: ['Assessments', 'Threat Research', 'Remediation'],
+              },
+              {
+                company: 'Resecurity',
+                role: 'Security Researcher',
+                date: '2022/12 – 2023/12',
+                summary:
+                  'Conducted vulnerability identification and audits with a focus on intelligence-driven research and automation.',
+                points: [
+                  'Identified vulnerabilities using cyber intelligence techniques and testing.',
+                  'Conducted network/security audits and documented risks and mitigations.',
+                  'Automated scanning to surface potential security threats at scale.',
+                ],
+                tags: ['Research', 'Automation', 'Auditing'],
+              },
+            ].map((job) => (
+              <article key={`${job.company}-${job.role}`} className="xp-item card-hover" data-reveal>
+                <div className="xp-dot" aria-hidden="true" />
 
-  <div className="xp-timeline">
-    {[
-      {
-        company: 'Eastern Province Eamana',
-        role: 'Cyber Security Engineer',
-        date: '2025/01 – Present',
-        summary:
-          'Overseeing security operations for government hardware/software environments and driving security improvements across teams.',
-        points: [
-          'Led a team of 3 engineers to manage security posture and operational priorities.',
-          'Directed security assessments and technical decision-making for escalations.',
-          'Improved internal security workflows and reporting quality across engagements.',
-        ],
-        tags: ['Leadership', 'Security Operations', 'Risk', 'Governance'],
-      },
-      {
-        company: 'CyberGulf',
-        role: 'Penetration Tester',
-        date: '2024/09 – 2024/12',
-        summary:
-          'Delivered web/mobile/API security testing engagements and helped standardize testing processes and client scoping.',
-        points: [
-          'Performed penetration testing on Web, Mobile, and API targets across multiple clients.',
-          'Created internal guidelines to standardize testing methodology and reporting.',
-          'Bridged technical team and sales to ensure accurate scope and expectations.',
-        ],
-        tags: ['Web', 'Mobile', 'API', 'Reporting'],
-      },
-      {
-        company: 'Pentix',
-        role: 'Cybersecurity Consultant',
-        date: '2024/02 – 2025/02',
-        summary:
-          'Consulted on multi-surface security assessments, focusing on actionable remediation and measurable risk reduction.',
-        points: [
-          'Assessed Web, Mobile, API, Network, and Thick Client applications.',
-          'Translated findings into clear remediation plans for dev/infra teams.',
-          'Researched emerging threats to keep testing coverage current.',
-        ],
-        tags: ['Assessments', 'Threat Research', 'Remediation'],
-      },
-      {
-        company: 'Resecurity (USA)',
-        role: 'Security Researcher',
-        date: '2022/12 – 2023/12',
-        summary:
-          'Conducted vulnerability identification and audits with a focus on intelligence-driven research and automation.',
-        points: [
-          'Identified vulnerabilities using cyber intelligence techniques and testing.',
-          'Conducted network/security audits and documented risks and mitigations.',
-          'Automated scanning to surface potential security threats at scale.',
-        ],
-        tags: ['Research', 'Automation', 'Auditing'],
-      },
-    ].map((job) => (
-      <article key={`${job.company}-${job.role}`} className="xp-item card-hover">
-        <div className="xp-dot" aria-hidden="true" />
+                <div className="xp-card">
+                  <div className="xp-top">
+                    <div className="xp-title">
+                      <div className="xp-company">{job.company}</div>
+                      <div className="xp-role">{job.role}</div>
+                    </div>
+                    <div className="xp-date">{job.date}</div>
+                  </div>
 
-        <div className="xp-card">
-          <div className="xp-top">
-            <div className="xp-title">
-              <div className="xp-company">{job.company}</div>
-              <div className="xp-role">{job.role}</div>
-            </div>
-            <div className="xp-date">{job.date}</div>
-          </div>
+                  <p className="xp-summary">{job.summary}</p>
 
-          <p className="xp-summary">{job.summary}</p>
+                  <div className="xp-subtitle">Responsibilities</div>
+                  <ul className="xp-points">
+                    {job.points.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
 
-          <div className="xp-subtitle">Responsibilities</div>
-          <ul className="xp-points">
-            {job.points.map((p, i) => (
-              <li key={i}>{p}</li>
+                  <div className="xp-tags">
+                    {job.tags.map((t) => (
+                      <span key={t} className="xp-tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
-          </ul>
-
-          <div className="xp-tags">
-            {job.tags.map((t) => (
-              <span key={t} className="xp-tag">
-                {t}
-              </span>
-            ))}
           </div>
-        </div>
-      </article>
-    ))}
-  </div>
-</section>
-
+        </section>
 
         {/* ✅ Hall of Fame cards with CDN logos */}
         <section id="hof" data-reveal>
@@ -268,13 +275,11 @@ const HOF_ITEMS: HofItem[] = useMemo(
 
                 <div className="hof-meta">
                   <div className="hof-name">{c.name}</div>
-                  {/* removed "Hall of Fame" line */}
                 </div>
               </article>
             ))}
           </div>
         </section>
-
 
         <section id="certs" data-reveal>
           <h2 className="section-title">&gt; ./certifications</h2>
@@ -332,7 +337,6 @@ const HOF_ITEMS: HofItem[] = useMemo(
           </div>
         </section>
 
-
         <section id="skills" data-reveal>
           <h2 className="section-title">&gt; ./skills_and_tools</h2>
 
@@ -343,11 +347,17 @@ const HOF_ITEMS: HofItem[] = useMemo(
 
             <div className="skill-tags">
               {[
-                { name: 'Penetration Testing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-lock.svg' },
+                {
+                  name: 'Penetration Testing',
+                  icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-lock.svg',
+                },
                 { name: 'Web Application Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/globe2.svg' },
                 { name: 'Mobile Security Testing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/phone.svg' },
                 { name: 'API Security Testing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/braces.svg' },
-                { name: 'Active Directory Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/diagram-3.svg' },
+                {
+                  name: 'Active Directory Security',
+                  icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/diagram-3.svg',
+                },
                 { name: 'Network Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/router.svg' },
                 { name: 'Vulnerability Assessment', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/bug.svg' },
                 { name: 'Security Auditing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/clipboard-check.svg' },
@@ -380,10 +390,8 @@ const HOF_ITEMS: HofItem[] = useMemo(
                 </span>
               ))}
             </div>
-
           </div>
         </section>
-
 
         <section id="contact" data-reveal>
           <h2 className="section-title">&gt; ./contact</h2>
@@ -405,11 +413,16 @@ const HOF_ITEMS: HofItem[] = useMemo(
               {
                 label: 'LinkedIn',
                 value: 'View Profile',
-                href: '#',
+                href: 'https://www.linkedin.com/in/tensi4',
                 icon: 'fab fa-linkedin',
               },
             ].map((c) => (
-              <a key={c.label} href={c.href} className="contact-card">
+              <a
+                key={c.label}
+                href={c.href}
+                className="contact-card"
+                {...(c.label === 'LinkedIn' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
                 <div className="contact-icon">
                   {c.iconSvg ? (
                     <img src={c.iconSvg} className="contact-icon-svg" alt="" />
@@ -426,9 +439,6 @@ const HOF_ITEMS: HofItem[] = useMemo(
             ))}
           </div>
         </section>
-
-
-
       </main>
 
       <footer>
