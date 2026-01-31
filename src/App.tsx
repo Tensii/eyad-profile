@@ -27,7 +27,7 @@ const HOF_ITEMS: HofItem[] = useMemo(
       { name: 'Pfizer', logo: '/pfizer.svg' },
       
       // FIX FOR GLOBAL: Using a reliable transparent PNG placeholder
-      { name: 'Global', logo: 'https://vignette.wikia.nocookie.net/logopedia/images/2/23/Global_Media_%26_Entertainment_logo.png' },
+      { name: 'Global', logo: '/global.png' },
       
       { name: 'Montea', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/homeassistant.svg' },
     ],
