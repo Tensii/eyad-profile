@@ -3,20 +3,29 @@
 Personal portfolio website.
 
 ## Tech
-- React (Create React App)
-- TypeScript
+- React + TypeScript
+- Vite
 - Deploy: Vercel (connected to GitHub)
 
 ## Local development
 ```bash
 npm install
-npm start
+npm run dev
 ```
 
 ## Production build
 ```bash
 npm run build
+npm run preview
 ```
 
-## CI
-GitHub Actions runs a production build on every push/PR to `master`.
+## Quality
+```bash
+npm run lint
+npm run format
+npm run typecheck
+```
+
+## SEO
+- `public/robots.txt`
+- `public/sitemap.xml`
