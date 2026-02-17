@@ -36,11 +36,24 @@ function App() {
   );
 
   useEffect(() => {
+    // Keep the glitch effect as a brief accent, and respect reduced motion.
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    if (prefersReducedMotion) return;
+
     const interval = window.setInterval(() => {
       setGlitchActive((prev) => !prev);
-    }, 2500);
+    }, 3000);
 
-    return () => window.clearInterval(interval);
+    // Tone down after a short period (still keeps the style, but less noisy)
+    const stop = window.setTimeout(() => {
+      window.clearInterval(interval);
+      setGlitchActive(false);
+    }, 15000);
+
+    return () => {
+      window.clearInterval(interval);
+      window.clearTimeout(stop);
+    };
   }, []);
 
   // Smooth reveal on scroll (no libs)
@@ -268,7 +281,7 @@ function App() {
 
           <div className="hof-cards">
             {HOF_ITEMS.map((c) => (
-              <article key={c.name} className="hof-card card-hover">
+              <article key={c.name} className="hof-card card-hover" title={c.name} aria-label={c.name}>
                 <div className="hof-logo-wrap" aria-hidden="true">
                   <img
                     className="hof-logo hof-logo--tint"
@@ -326,6 +339,8 @@ function App() {
                 key={cert.name}
                 className="hof-card card-hover cert-link"
                 href={cert.href}
+                title={`${cert.name} — ${cert.sub}`}
+                aria-label={`${cert.name} — ${cert.sub}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
