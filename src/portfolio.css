@@ -67,6 +67,62 @@ header {
     margin-bottom: 34px;
 }
 
+/* Hero layout (avatar + title + CTAs) */
+.hero{
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-avatar{
+  width: 88px;
+  height: 88px;
+  border-radius: 22px;
+  border: 1px solid rgba(0,255,170,0.28);
+  background: rgba(0,0,0,0.35);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.35),
+    0 0 26px rgba(0,255,170,0.10);
+  display: grid;
+  place-items: center;
+}
+
+.hero-avatar__inner{
+  font-family: var(--font-mono);
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: rgba(0,255,170,0.92);
+  text-shadow: 0 0 18px rgba(0,255,170,0.22);
+}
+
+.hero-text{
+  text-align: left;
+  min-width: 0;
+}
+
+.hero-cta{
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-cta .btn{
+  margin: 0; /* override old .btn margin */
+}
+
+@media (max-width: 640px){
+  .hero{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .hero-text{ text-align: center; }
+  .hero-cta{ justify-content: center; }
+}
+
 .glitch-wrapper {
     position: relative;
     display: inline-block;
@@ -685,6 +741,13 @@ footer {
   background: rgba(0, 0, 0, 0.24);
   position: relative;
   overflow: hidden;
+  min-height: 86px;
+}
+
+/* Keyboard focus (cert cards are links) */
+.hof-card:focus-visible{
+  outline: 2px solid rgba(0, 255, 170, 0.75);
+  outline-offset: 3px;
 }
 
 .hof-card::before {
@@ -712,7 +775,8 @@ footer {
   width: 34px;
   height: 34px;
   object-fit: contain;
-  opacity: 0.95;
+  opacity: 0.96;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.45));
 }
 
 /* Tint monochrome SVGs to neon-green (works great with SimpleIcons) */
@@ -725,7 +789,8 @@ footer {
     saturate(520%)
     hue-rotate(85deg)
     brightness(104%)
-    contrast(105%);
+    contrast(105%)
+    drop-shadow(0 6px 12px rgba(0,0,0,0.45));
 }
 
 .hof-logo-wrap--fallback .hof-fallback {
@@ -1547,6 +1612,7 @@ footer {
   gap: 14px;
   align-items:flex-start;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .xp-company{

@@ -101,18 +101,35 @@ function App() {
 
       <header>
         <div className="container">
-          <div className="glitch-wrapper" data-reveal>
-            <h1 className={`glitch ${glitchActive ? 'active' : ''}`} data-text="Eyad Ayoub">
-              Eyad Ayoub
-            </h1>
-          </div>
+          <div className="hero" data-reveal>
+            <div className="hero-avatar" aria-hidden="true">
+              <span className="hero-avatar__inner">EA</span>
+            </div>
 
-          <p className="subtitle" data-reveal>
-            @Tensi4 | Penetration Tester | Security Researcher
-          </p>
+            <div className="hero-text">
+              <div className="glitch-wrapper">
+                <h1 className={`glitch ${glitchActive ? 'active' : ''}`} data-text="Eyad Ayoub">
+                  Eyad Ayoub
+                </h1>
+              </div>
 
-          <div className="status" data-reveal>
-            <span className="indicator online" /> SYSTEM ONLINE
+              <p className="subtitle">
+                @Tensi4 | Penetration Tester | Security Researcher
+              </p>
+
+              <div className="hero-cta" aria-label="Primary actions">
+                <a className="btn btn-glow" href="/eyad-ayoub-cv.pdf" download>
+                  Download CV
+                </a>
+                <a className="btn btn-glow" href="https://www.linkedin.com/in/tensi4" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </div>
+
+              <div className="status">
+                <span className="indicator online" /> SYSTEM ONLINE
+              </div>
+            </div>
           </div>
 
           <nav className="quick-nav" aria-label="Section navigation" data-reveal>
@@ -127,10 +144,7 @@ function App() {
               </button>
             ))}
 
-            {/* CV download lives in the navbar (same style as the other chips) */}
-            <a href="/eyad-ayoub-cv.pdf" className="nav-chip nav-chip--cv" download>
-              <span className="chip-prefix">&gt;</span> ./download_cv
-            </a>
+            {/* CV download moved to hero actions */}
           </nav>
         </div>
       </header>
