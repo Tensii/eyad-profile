@@ -8,6 +8,25 @@
     --font-mono: 'Courier New', Courier, monospace;
 }
 
+/* Skip to main content link - accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-decoration: none;
+    z-index: 9999;
+    transition: top 0.2s ease;
+}
+.skip-link:focus {
+    top: 16px;
+}
+
 * {
     margin: 0;
     padding: 0;

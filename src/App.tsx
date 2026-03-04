@@ -96,6 +96,10 @@ function App() {
 
   return (
     <>
+      {/* Skip to main content link for keyboard users */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <div className="scanline" />
       <div className="overlay" />
 
@@ -149,7 +153,7 @@ function App() {
         </div>
       </header>
 
-      <main className="container">
+      <main id="main-content" className="container">
         <section id="about" data-reveal>
           <h2 className="section-title">&gt; ./about_me</h2>
           <div className="section-cmd" aria-hidden="true">
@@ -300,7 +304,7 @@ function App() {
                   <img
                     className="hof-logo hof-logo--tint"
                     src={c.logo}
-                    alt=""
+                    alt={`${c.name} logo`}
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
@@ -362,7 +366,7 @@ function App() {
                   <img
                     className="hof-logo hof-logo--tint"
                     src={cert.logo}
-                    alt=""
+                    alt={`${cert.name} certification badge`}
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
