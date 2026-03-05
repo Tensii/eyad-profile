@@ -14,23 +14,18 @@ function App() {
   // Hall of Fame items (ALL CDN logos)
   const HOF_ITEMS: HofItem[] = useMemo(
     () => [
-      { name: 'Google VRP', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/google.svg' },
-      { name: 'Sony', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/sony.svg' },
-      { name: 'IBM', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/ibm.svg' },
-      { name: 'Epic Games', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/epicgames.svg' },
-      { name: 'TIDAL', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/tidal.svg' },
-      { name: 'Grammarly', logo: 'https://cdn.simpleicons.org/grammarly/000000' },
-      { name: 'Marriott', logo: 'https://cdn.simpleicons.org/marriott/000000' },
+      { name: 'Google VRP', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg' },
+      { name: 'Sony', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sony.svg' },
+      { name: 'IBM', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ibm.svg' },
+      { name: 'Epic Games', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/epicgames.svg' },
+      { name: 'TIDAL', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tidal.svg' },
+      { name: 'Grammarly', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/grammarly.svg' },
+      { name: 'Marriott', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/marriott.svg' },
       { name: 'SHEIN', logo: 'https://img.icons8.com/ios-filled/50/000000/shein.png' },
-      { name: 'JetBlue', logo: 'https://cdn.simpleicons.org/jetblue/000000' },
-
-      // FIX FOR PFIZER: Using a direct SVG placeholder service
+      { name: 'JetBlue', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jetblue.svg' },
       { name: 'Pfizer', logo: '/pfizer.svg' },
-
-      // FIX FOR GLOBAL: Using a reliable transparent PNG placeholder
       { name: 'Global', logo: '/global.png' },
-
-      { name: 'Montea', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/homeassistant.svg' },
+      { name: 'Montea', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/homeassistant.svg' },
     ],
     []
   );
@@ -416,24 +411,19 @@ function App() {
                 { name: 'Network Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/router.svg' },
                 { name: 'Vulnerability Assessment', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/bug.svg' },
                 { name: 'Security Auditing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/clipboard-check.svg' },
-
-                // FIXED: reliable Burp Suite icon CDN
-                { name: 'Burp Suite', icon: 'https://cdn.simpleicons.org/burpsuite/000000' },
-
+                { name: 'Burp Suite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/burpsuite.svg' },
                 { name: 'Metasploit', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/lightning-charge.svg' },
                 { name: 'Nmap', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/radar.svg' },
                 { name: 'OWASP ZAP', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-check.svg' },
-
-                // also more reliable as simpleicons CDN
-                { name: 'Kali Linux', icon: 'https://cdn.simpleicons.org/kalilinux/000000' },
-                { name: 'Wireshark', icon: 'https://cdn.simpleicons.org/wireshark/000000' },
-                { name: 'Python', icon: 'https://cdn.simpleicons.org/python/000000' },
-                { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/000000' },
-                { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/000000' },
-                { name: 'C/C++', icon: 'https://cdn.simpleicons.org/cplusplus/000000' },
-                { name: 'Go', icon: 'https://cdn.simpleicons.org/go/000000' },
-                { name: 'PowerShell', icon: 'https://cdn.simpleicons.org/powershell/000000' },
-                { name: 'Bash Scripting', icon: 'https://cdn.simpleicons.org/gnubash/000000' },
+                { name: 'Kali Linux', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kalilinux.svg' },
+                { name: 'Wireshark', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/wireshark.svg' },
+                { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg' },
+                { name: 'Java', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg' },
+                { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg' },
+                { name: 'C/C++', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg' },
+                { name: 'Go', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/go.svg' },
+                { name: 'PowerShell', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powershell.svg' },
+                { name: 'Bash Scripting', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gnubash.svg' },
               ].map((s) => (
                 <span key={s.name} className="tag tag--icon" title={s.name}>
                   <img
