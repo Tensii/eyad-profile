@@ -24,3 +24,9 @@ yarn-error.log*
 
 dist
 *.tsbuildinfo
+
+# local secrets
+.webui_secret_key
+.env
+.env.*
+!.env.example

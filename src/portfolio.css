@@ -279,17 +279,6 @@ section {
   section{ margin-bottom: 42px; }
 }
 
-/* About section actions (CV button) */
-.about-actions{
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-}
-.about-actions .contact-card{
-  max-width: 420px;
-  width: 100%;
-}
-
 /* Terminal Card */
 .terminal-card {
     background-color: var(--card-bg);
@@ -303,98 +292,6 @@ section {
 .prompt {
     color: var(--accent-color);
     margin-right: 10px;
-}
-
-/* Stats */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    text-align: center;
-}
-
-.stat-box {
-    background: var(--card-bg);
-    padding: 20px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-}
-
-.stat-box h3 {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-}
-
-/* Experience */
-.timeline {
-    border-left: 2px solid var(--border-color);
-    padding-left: 20px;
-    margin-left: 10px;
-}
-
-.job-card {
-    background: var(--card-bg);
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    position: relative;
-}
-
-.job-card::before {
-    content: '';
-    position: absolute;
-    left: -27px;
-    top: 20px;
-    width: 12px;
-    height: 12px;
-    background: var(--accent-color);
-    border-radius: 50%;
-}
-
-.job-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-}
-
-.job-header h3 {
-    color: #fff;
-    font-size: 1.2rem;
-}
-
-.job-header .company {
-    color: var(--accent-color);
-    font-family: var(--font-mono);
-}
-
-.job-header .date {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.job-card ul {
-    list-style-position: inside;
-    color: #ccc;
-}
-
-/* Hall of Fame */
-.hof-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.hof-grid span {
-    background: #1a1a1a;
-    border: 1px solid var(--accent-dim);
-    color: var(--accent-color);
-    padding: 8px 15px;
-    border-radius: 3px;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
 }
 
 /* HOF: small subtitle line under title */
@@ -433,32 +330,6 @@ section {
   display: none !important;
 }
 
-/* Certs */
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.2s;
-}
-
-.cert-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-}
-
-.cert-card i {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 10px;
-}
-
 /* Skills */
 .skill-tags {
     display: flex;
@@ -473,11 +344,6 @@ section {
     border-radius: 3px;
     font-size: 0.9rem;
     border: 1px solid #444;
-}
-
-/* Contact */
-.contact-box {
-    text-align: center;
 }
 
 .btn {
@@ -712,24 +578,8 @@ footer {
 
 
 /* ---------------------------
-   Hall of Fame Cards (CDN logos + theme green tint)
+   Hall of Fame Cards (local logos + theme green tint)
 ---------------------------- */
-
-/* Bigger grid + responsive */
-.hof-grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 14px;
-}
-
-@media (max-width: 900px){
-  .hof-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 520px){
-  .hof-grid{ grid-template-columns: 1fr; }
-}
-
 
 .hof-cards {
   display: grid;

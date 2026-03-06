@@ -11,21 +11,21 @@ function App() {
   const [glitchActive, setGlitchActive] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('about');
 
-  // Hall of Fame items (ALL CDN logos)
+  // Hall of Fame items
   const HOF_ITEMS: HofItem[] = useMemo(
     () => [
-      { name: 'Google VRP', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg' },
-      { name: 'Sony', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/sony.svg' },
-      { name: 'IBM', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ibm.svg' },
-      { name: 'Epic Games', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/epicgames.svg' },
-      { name: 'TIDAL', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tidal.svg' },
-      { name: 'Grammarly', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/grammarly.svg' },
-      { name: 'Marriott', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/marriott.svg' },
-      { name: 'SHEIN', logo: 'https://img.icons8.com/ios-filled/50/000000/shein.png' },
-      { name: 'JetBlue', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/jetblue.svg' },
+      { name: 'Google VRP', logo: '/icons/si-google.svg' },
+      { name: 'Sony', logo: '/icons/si-sony.svg' },
+      { name: 'IBM', logo: '/icons/si-ibm.svg' },
+      { name: 'Epic Games', logo: '/icons/si-epicgames.svg' },
+      { name: 'TIDAL', logo: '/icons/si-tidal.svg' },
+      { name: 'Grammarly', logo: '/icons/si-grammarly.svg' },
+      { name: 'Marriott', logo: '/icons/si-marriott.svg' },
+      { name: 'SHEIN', logo: '/icons/i8-shein.png' },
+      { name: 'JetBlue', logo: '/icons/si-jetblue.svg' },
       { name: 'Pfizer', logo: '/pfizer.svg' },
       { name: 'Global', logo: '/global.png' },
-      { name: 'Montea', logo: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/homeassistant.svg' },
+      { name: 'Montea', logo: '/icons/si-homeassistant.svg' },
     ],
     []
   );
@@ -83,6 +83,31 @@ function App() {
     []
   );
 
+  useEffect(() => {
+    const sections = navItems
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target?.id) {
+          setActiveSection(visible.target.id);
+        }
+      },
+      {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      }
+    );
+
+    sections.forEach((section) => io.observe(section));
+    return () => io.disconnect();
+  }, [navItems]);
+
   const scrollToSection = (id: string) => {
     setActiveSection(id);
     const el = document.getElementById(id);
@@ -137,6 +162,7 @@ function App() {
                 key={item.id}
                 type="button"
                 className={`nav-chip ${activeSection === item.id ? 'active' : ''}`}
+                aria-current={activeSection === item.id ? 'true' : undefined}
                 onClick={() => scrollToSection(item.id)}
               >
                 <span className="chip-prefix">&gt;</span> ./{item.label}
@@ -333,19 +359,19 @@ function App() {
                 name: 'eMAPT',
                 sub: 'Mobile Application Penetration Tester',
                 href: 'https://certs.ine.com/7b65c7a0-4871-4292-8382-fe277a260ff2#acc.KcR2LF31',
-                logo: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/phone-fill.svg',
+                logo: '/icons/bi-phone-fill.svg',
               },
               {
                 name: 'CAP',
                 sub: 'Certified Application Security Practitioner',
                 href: 'https://candidate.speedexam.net/certificate.aspx?SSTATE=am4131EniU8ntjp4bO5mXT4EbN2w6ECBRx7UCNm238DyGAghx9RMsz3v1htXv/Yr9NBh+TRqvhUkq/rY7/vNU9PJ0DDqOvdgkhd6d+vkK94=',
-                logo: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-lock-fill.svg',
+                logo: '/icons/bi-shield-lock-fill.svg',
               },
               {
                 name: 'ACE',
                 sub: 'API Certified Expert',
                 href: 'https://www.credly.com/badges/652d0952-4835-46b1-a63d-b4e4cea1cfe1/public_url',
-                logo: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/braces-asterisk.svg',
+                logo: '/icons/bi-braces-asterisk.svg',
               },
             ].map((cert) => (
               <a
@@ -399,31 +425,31 @@ function App() {
               {[
                 {
                   name: 'Penetration Testing',
-                  icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-lock.svg',
+                  icon: '/icons/bi-shield-lock.svg',
                 },
-                { name: 'Web Application Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/globe2.svg' },
-                { name: 'Mobile Security Testing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/phone.svg' },
-                { name: 'API Security Testing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/braces.svg' },
+                { name: 'Web Application Security', icon: '/icons/bi-globe2.svg' },
+                { name: 'Mobile Security Testing', icon: '/icons/bi-phone.svg' },
+                { name: 'API Security Testing', icon: '/icons/bi-braces.svg' },
                 {
                   name: 'Active Directory Security',
-                  icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/diagram-3.svg',
+                  icon: '/icons/bi-diagram-3.svg',
                 },
-                { name: 'Network Security', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/router.svg' },
-                { name: 'Vulnerability Assessment', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/bug.svg' },
-                { name: 'Security Auditing', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/clipboard-check.svg' },
-                { name: 'Burp Suite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/burpsuite.svg' },
-                { name: 'Metasploit', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/lightning-charge.svg' },
-                { name: 'Nmap', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/radar.svg' },
-                { name: 'OWASP ZAP', icon: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/shield-check.svg' },
-                { name: 'Kali Linux', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kalilinux.svg' },
-                { name: 'Wireshark', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/wireshark.svg' },
-                { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg' },
-                { name: 'Java', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg' },
-                { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/javascript.svg' },
-                { name: 'C/C++', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cplusplus.svg' },
-                { name: 'Go', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/go.svg' },
-                { name: 'PowerShell', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/powershell.svg' },
-                { name: 'Bash Scripting', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gnubash.svg' },
+                { name: 'Network Security', icon: '/icons/bi-router.svg' },
+                { name: 'Vulnerability Assessment', icon: '/icons/bi-bug.svg' },
+                { name: 'Security Auditing', icon: '/icons/bi-clipboard-check.svg' },
+                { name: 'Burp Suite', icon: '/icons/si-burpsuite.svg' },
+                { name: 'Metasploit', icon: '/icons/bi-lightning-charge.svg' },
+                { name: 'Nmap', icon: '/icons/bi-radar.svg' },
+                { name: 'OWASP ZAP', icon: '/icons/bi-shield-check.svg' },
+                { name: 'Kali Linux', icon: '/icons/si-kalilinux.svg' },
+                { name: 'Wireshark', icon: '/icons/si-wireshark.svg' },
+                { name: 'Python', icon: '/icons/si-python.svg' },
+                { name: 'Java', icon: '/icons/si-openjdk.svg' },
+                { name: 'JavaScript', icon: '/icons/si-javascript.svg' },
+                { name: 'C/C++', icon: '/icons/si-cplusplus.svg' },
+                { name: 'Go', icon: '/icons/si-go.svg' },
+                { name: 'PowerShell', icon: '/icons/si-powershell.svg' },
+                { name: 'Bash Scripting', icon: '/icons/si-gnubash.svg' },
               ].map((s) => (
                 <span key={s.name} className="tag tag--icon" title={s.name}>
                   <img
@@ -456,19 +482,19 @@ function App() {
                 label: 'Email',
                 value: 'tensi4@protonmail.com',
                 href: 'mailto:tensi4@protonmail.com',
-                iconSvg: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/envelope-fill.svg',
+                iconSvg: '/icons/bi-envelope-fill.svg',
               },
               {
                 label: 'Phone',
                 value: '+966 53 399 1872',
                 href: 'tel:+966533991872',
-                icon: 'fas fa-phone',
+                iconSvg: '/icons/bi-phone-fill.svg',
               },
               {
                 label: 'LinkedIn',
                 value: 'View Profile',
                 href: 'https://www.linkedin.com/in/tensi4',
-                icon: 'fab fa-linkedin',
+                iconSvg: '/icons/si-linkedin.svg',
               },
             ].map((c) => (
               <a
@@ -478,12 +504,7 @@ function App() {
                 {...(c.label === 'LinkedIn' ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               >
                 <div className="contact-icon">
-                  {c.iconSvg ? (
-                    <img
-                    decoding="async" src={c.iconSvg} className="contact-icon-svg" alt="" />
-                  ) : (
-                    <i className={c.icon} />
-                  )}
+                  <img decoding="async" src={c.iconSvg} className="contact-icon-svg" alt="" />
                 </div>
 
                 <div className="contact-meta">
