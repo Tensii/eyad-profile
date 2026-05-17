@@ -8,7 +8,6 @@ type HofItem = {
 };
 
 function App() {
-  const [glitchActive, setGlitchActive] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('about');
 
   // Hall of Fame items
@@ -27,29 +26,8 @@ function App() {
       { name: 'Global', logo: '/global.png' },
       { name: 'Montea', logo: '/icons/si-homeassistant.svg' },
     ],
-    []
+    [],
   );
-
-  useEffect(() => {
-    // Keep the glitch effect as a brief accent, and respect reduced motion.
-    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-    if (prefersReducedMotion) return;
-
-    const interval = window.setInterval(() => {
-      setGlitchActive((prev) => !prev);
-    }, 3000);
-
-    // Tone down after a short period (still keeps the style, but less noisy)
-    const stop = window.setTimeout(() => {
-      window.clearInterval(interval);
-      setGlitchActive(false);
-    }, 15000);
-
-    return () => {
-      window.clearInterval(interval);
-      window.clearTimeout(stop);
-    };
-  }, []);
 
   // Smooth reveal on scroll (no libs)
   useEffect(() => {
@@ -64,7 +42,7 @@ function App() {
           }
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.12 },
     );
 
     els.forEach((el) => io.observe(el));
@@ -74,13 +52,15 @@ function App() {
   const navItems = useMemo(
     () => [
       { id: 'about', label: 'about_me' },
+
       { id: 'experience', label: 'experience' },
+      { id: 'projects', label: 'projects' },
       { id: 'hof', label: 'hall_of_fame' },
       { id: 'certs', label: 'certifications' },
       { id: 'skills', label: 'skills' },
       { id: 'contact', label: 'contact' },
     ],
-    []
+    [],
   );
 
   useEffect(() => {
@@ -101,7 +81,7 @@ function App() {
       {
         rootMargin: '-30% 0px -55% 0px',
         threshold: [0.1, 0.25, 0.5, 0.75],
-      }
+      },
     );
 
     sections.forEach((section) => io.observe(section));
@@ -120,8 +100,6 @@ function App() {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
-      <div className="scanline" />
-      <div className="overlay" />
 
       <header>
         <div className="container">
@@ -132,26 +110,29 @@ function App() {
 
             <div className="hero-text">
               <div className="glitch-wrapper">
-                <h1 className={`glitch ${glitchActive ? 'active' : ''}`} data-text="Eyad Ayoub">
+                <h1 className="glitch" data-text="Eyad Ayoub">
                   Eyad Ayoub
                 </h1>
               </div>
 
-              <p className="subtitle">
-                @Tensi4 | Penetration Tester | Security Researcher
-              </p>
+              <p className="subtitle">Penetration Tester | Security Researcher</p>
 
               <div className="hero-cta" aria-label="Primary actions">
-                <a className="btn btn-glow" href="/eyad-ayoub-cv.pdf" download>
+                <a className="btn btn-glow" href="/Eyad-Ayoub-Resume.pdf" download>
                   Download CV
                 </a>
-                <a className="btn btn-glow" href="https://www.linkedin.com/in/tensi4" target="_blank" rel="noopener noreferrer">
+                <a
+                  className="btn btn-glow"
+                  href="https://www.linkedin.com/in/tensi4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   LinkedIn
                 </a>
               </div>
 
               <div className="status">
-                <span className="indicator online" /> SYSTEM ONLINE
+                <span className="indicator online" /> READY TO SECURE
               </div>
             </div>
           </div>
@@ -165,7 +146,7 @@ function App() {
                 aria-current={activeSection === item.id ? 'true' : undefined}
                 onClick={() => scrollToSection(item.id)}
               >
-                <span className="chip-prefix">&gt;</span> ./{item.label}
+                {item.label.replace('_', ' ')}
               </button>
             ))}
 
@@ -178,43 +159,25 @@ function App() {
         <section id="about" data-reveal>
           <h2 className="section-title">&gt; ./about_me</h2>
           <div className="section-cmd" aria-hidden="true">
-            <span className="prompt">root@tensi:~#</span> <span className="cmd">cd about_me && cat summary.txt</span>
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">cat about.txt</span>
           </div>
 
           <div className="terminal-card card-hover">
             <p>
-              <span className="prompt">root@tensi:~#</span>{' '}
-              <span className="tw-cmd" style={{ ['--cmd-steps' as any]: 14, ['--cmd-dur' as any]: '0.9s' }}>
-                cat summary.txt
-              </span>
-              <span className="tw-newline" aria-hidden="true" />
-
-              <span
-                className="tw-body"
-                style={{
-                  ['--body-steps' as any]: 260,
-                  ['--body-dur' as any]: '5.5s',
-                  ['--cmd-dur' as any]: '0.9s', // must match tw-cmd --cmd-dur
-                }}
-              >
-                Experienced Penetration Tester with over 4 years of practical experience performing in-depth security assessments across
-                web, mobile, API, network, and thick client environments. Proven ability to uncover complex vulnerabilities through advanced
-                exploitation techniques, deep protocol and application analysis, and meticulous threat modeling. Adept at translating
-                technical findings into clear, actionable remediation strategies for development and infrastructure teams. Continuously
-                engaged in cybersecurity research, staying ahead of emerging attack vectors and evolving offensive methodologies…
-                <span className="cursor" aria-hidden="true">
-                  █
-                </span>
-              </span>
+              Penetration tester with four years of professional offensive security experience across web,
+              mobile, API, network, and thick client environments. Recognized in bug bounty programs at
+              Google, Sony, IBM, Pfizer, and Epic Games. Android security specialist with expertise in dynamic
+              instrumentation, APK reverse engineering, and exploit development. Currently leading a
+              government security engineering team in Eastern Province, Saudi Arabia.
             </p>
           </div>
         </section>
 
         <section id="experience" data-reveal>
           <h2 className="section-title">&gt; ./experience</h2>
-
           <div className="section-cmd" aria-hidden="true">
-            <span className="prompt">root@tensi:~#</span> <span className="cmd">cd experience && tail -n +1 timeline.log</span>
+            <span className="prompt">root@tensi:~#</span>{' '}
+            <span className="cmd">cd experience && tail -n +1 timeline.log</span>
           </div>
 
           <div className="xp-timeline">
@@ -224,13 +187,13 @@ function App() {
                 role: 'Cyber Security Engineer',
                 date: '2025/01 – Present',
                 summary:
-                  'Overseeing security operations for government hardware/software environments and driving security improvements across teams.',
+                  'Leading a government security engineering team in Eastern Province, Saudi Arabia, overseeing security operations for critical infrastructure.',
                 points: [
-                  'Led a team of 3 engineers to manage security posture and operational priorities.',
-                  'Directed security assessments and technical decision-making for escalations.',
-                  'Improved internal security workflows and reporting quality across engagements.',
+                  'Led a team of engineers to manage security posture and operational priorities across the organization.',
+                  'Directed security assessments and technical decision-making for complex escalations.',
+                  'Improved internal security workflows and reporting quality across various government engagements.',
                 ],
-                tags: ['Leadership', 'Security Operations', 'Risk', 'Governance'],
+                tags: ['Leadership', 'Security Engineering', 'GovSec', 'Risk Management'],
               },
               {
                 company: 'CyberGulf',
@@ -306,12 +269,71 @@ function App() {
           </div>
         </section>
 
+        <section id="projects" data-reveal>
+          <h2 className="section-title">&gt; ./projects</h2>
+          <div className="section-cmd" aria-hidden="true">
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">ls -la projects/</span>
+          </div>
+
+          <div className="projects-grid">
+            {[
+              {
+                name: 'BreachPilot',
+                desc: 'AI-assisted autonomous penetration testing platform designed to streamline security assessments through intelligent automation and adaptive scanning techniques.',
+                tags: ['AI', 'Python', 'Automation', 'OSINT'],
+                icon: '/icons/bi-lightning-charge.svg',
+                github: 'https://github.com/Tensii/BreachPilot',
+              },
+              {
+                name: 'reconHarvest',
+                desc: 'Modular Python reconnaissance framework for automated target mapping, subdomain discovery, and surface area analysis across large-scale environments.',
+                tags: ['Recon', 'Python', 'Security', 'Scalability'],
+                icon: '/icons/bi-radar.svg',
+                github: 'https://github.com/Tensii/reconHarvest-PythonV',
+              },
+            ].map((proj) => (
+              <article key={proj.name} className="project-card card-hover">
+                <div className="project-icon">
+                  <img
+                    src={proj.icon}
+                    alt=""
+                    aria-hidden="true"
+                    onError={(e) => (e.currentTarget.style.display = 'none')}
+                  />
+                </div>
+                <div className="project-content">
+                  <h3 className="project-name">{proj.name}</h3>
+                  <p className="project-desc">{proj.desc}</p>
+                  <div className="project-tags">
+                    {proj.tags.map((t) => (
+                      <span key={t} className="proj-tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  {proj.github && (
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link btn btn-glow"
+                      style={{ marginTop: '10px' }}
+                    >
+                      View Source
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* ✅ Hall of Fame cards with CDN logos */}
         <section id="hof" data-reveal>
           <h2 className="section-title">&gt; ./hall_of_fame</h2>
-
           <div className="section-cmd" aria-hidden="true">
-            <span className="prompt">root@tensi:~#</span> <span className="cmd">cat hall_of_fame.txt</span>
+            <span className="prompt">root@tensi:~#</span>{' '}
+            <span className="cmd">curl -I https://bounty.target</span>
           </div>
 
           <p className="hof-kicker">
@@ -323,7 +345,7 @@ function App() {
               <article key={c.name} className="hof-card card-hover" title={c.name} aria-label={c.name}>
                 <div className="hof-logo-wrap" aria-hidden="true">
                   <img
-                    className="hof-logo hof-logo--tint"
+                    className="hof-logo"
                     src={c.logo}
                     alt={`${c.name} logo`}
                     loading="lazy"
@@ -348,9 +370,8 @@ function App() {
 
         <section id="certs" data-reveal>
           <h2 className="section-title">&gt; ./certifications</h2>
-
           <div className="section-cmd" aria-hidden="true">
-            <span className="prompt">root@tensi:~#</span> <span className="cmd">ls -la certs/ && open links</span>
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">verify_certs.sh</span>
           </div>
 
           <div className="hof-cards">
@@ -385,7 +406,7 @@ function App() {
               >
                 <div className="hof-logo-wrap" aria-hidden="true">
                   <img
-                    className="hof-logo hof-logo--tint"
+                    className="hof-logo"
                     src={cert.logo}
                     alt={`${cert.name} certification badge`}
                     loading="lazy"
@@ -410,68 +431,60 @@ function App() {
         </section>
 
         <section id="skills" data-reveal>
-          <h2 className="section-title">&gt; ./skills_and_tools</h2>
-
+          <h2 className="section-title">&gt; ./skills</h2>
           <div className="section-cmd" aria-hidden="true">
-            <span className="prompt">root@tensi:~#</span> <span className="cmd">./list_skills_and_tools.sh</span>
+            <span className="prompt">root@tensi:~#</span> <span className="cmd">./load_modules --all</span>
           </div>
 
-          <div className="terminal-card card-hover">
-            <p>
-              <span className="prompt">root@tensi:~#</span> list_skills_and_tools.sh
-            </p>
-
-            <div className="skill-tags">
-              {[
-                {
-                  name: 'Penetration Testing',
-                  icon: '/icons/bi-shield-lock.svg',
-                },
-                { name: 'Web Application Security', icon: '/icons/bi-globe2.svg' },
-                { name: 'Mobile Security Testing', icon: '/icons/bi-phone.svg' },
-                { name: 'API Security Testing', icon: '/icons/bi-braces.svg' },
-                {
-                  name: 'Active Directory Security',
-                  icon: '/icons/bi-diagram-3.svg',
-                },
-                { name: 'Network Security', icon: '/icons/bi-router.svg' },
-                { name: 'Vulnerability Assessment', icon: '/icons/bi-bug.svg' },
-                { name: 'Security Auditing', icon: '/icons/bi-clipboard-check.svg' },
-                { name: 'Burp Suite', icon: '/icons/si-burpsuite.svg' },
-                { name: 'Metasploit', icon: '/icons/bi-lightning-charge.svg' },
-                { name: 'Nmap', icon: '/icons/bi-radar.svg' },
-                { name: 'OWASP ZAP', icon: '/icons/bi-shield-check.svg' },
-                { name: 'Kali Linux', icon: '/icons/si-kalilinux.svg' },
-                { name: 'Wireshark', icon: '/icons/si-wireshark.svg' },
-                { name: 'Python', icon: '/icons/si-python.svg' },
-                { name: 'Java', icon: '/icons/si-openjdk.svg' },
-                { name: 'JavaScript', icon: '/icons/si-javascript.svg' },
-                { name: 'C/C++', icon: '/icons/si-cplusplus.svg' },
-                { name: 'Go', icon: '/icons/si-go.svg' },
-                { name: 'PowerShell', icon: '/icons/si-powershell.svg' },
-                { name: 'Bash Scripting', icon: '/icons/si-gnubash.svg' },
-              ].map((s) => (
-                <span key={s.name} className="tag tag--icon" title={s.name}>
-                  <img
-                    className="tag-icon tag-icon--tint"
-                    src={s.icon}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                  {s.name}
-                </span>
-              ))}
-            </div>
+          <div className="skill-tags">
+            {[
+              {
+                name: 'Penetration Testing',
+                icon: '/icons/bi-shield-lock.svg',
+              },
+              { name: 'Web Application Security', icon: '/icons/bi-globe2.svg' },
+              { name: 'Mobile Security Testing', icon: '/icons/bi-phone.svg' },
+              { name: 'API Security Testing', icon: '/icons/bi-braces.svg' },
+              {
+                name: 'Active Directory Security',
+                icon: '/icons/bi-diagram-3.svg',
+              },
+              { name: 'Network Security', icon: '/icons/bi-router.svg' },
+              { name: 'Vulnerability Assessment', icon: '/icons/bi-bug.svg' },
+              { name: 'Security Auditing', icon: '/icons/bi-clipboard-check.svg' },
+              { name: 'Burp Suite', icon: '/icons/si-burpsuite.svg' },
+              { name: 'Metasploit', icon: '/icons/bi-lightning-charge.svg' },
+              { name: 'Nmap', icon: '/icons/bi-radar.svg' },
+              { name: 'OWASP ZAP', icon: '/icons/bi-shield-check.svg' },
+              { name: 'Kali Linux', icon: '/icons/si-kalilinux.svg' },
+              { name: 'Wireshark', icon: '/icons/si-wireshark.svg' },
+              { name: 'Python', icon: '/icons/si-python.svg' },
+              { name: 'Java', icon: '/icons/si-openjdk.svg' },
+              { name: 'JavaScript', icon: '/icons/si-javascript.svg' },
+              { name: 'C/C++', icon: '/icons/si-cplusplus.svg' },
+              { name: 'Go', icon: '/icons/si-go.svg' },
+              { name: 'PowerShell', icon: '/icons/si-powershell.svg' },
+              { name: 'Bash Scripting', icon: '/icons/si-gnubash.svg' },
+            ].map((s) => (
+              <span key={s.name} className="tag" title={s.name}>
+                <img
+                  className="tag-icon"
+                  src={s.icon}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                  }}
+                />
+                {s.name}
+              </span>
+            ))}
           </div>
         </section>
 
         <section id="contact" data-reveal>
           <h2 className="section-title">&gt; ./contact</h2>
-
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">init_comms --secure</span>
           </div>
@@ -518,7 +531,7 @@ function App() {
       </main>
 
       <footer>
-        <p>SYSTEM TERMINATED. COPYRIGHT 2026 @TENSI4.</p>
+        <p>© 2026 Eyad Ayoub (@Tensi4). All rights reserved.</p>
       </footer>
       <Analytics />
     </>

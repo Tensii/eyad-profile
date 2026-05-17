@@ -7,10 +7,7 @@ const indexPath = path.join(__dirname, '..', 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
 
 // Update og:url
-html = html.replace(
-  /(<meta[^>]*property="og:url"[^>]*content=")[^"]*("[^>]*>)/,
-  `$1${url}$2`
-);
+html = html.replace(/(<meta[^>]*property="og:url"[^>]*content=")[^"]*("[^>]*>)/, `$1${url}$2`);
 
 // Add/replace canonical
 const canonTag = `<link rel="canonical" href="${url}" />`;
@@ -37,12 +34,12 @@ fs.writeFileSync(
     `    <changefreq>weekly</changefreq>\n` +
     `    <priority>1.0</priority>\n` +
     `  </url>\n` +
-    `</urlset>\n`
+    `</urlset>\n`,
 );
 
 fs.writeFileSync(
   path.join(__dirname, '..', 'public', 'robots.txt'),
-  `User-agent: *\nAllow: /\n\nSitemap: ${url}sitemap.xml\n`
+  `User-agent: *\nAllow: /\n\nSitemap: ${url}sitemap.xml\n`,
 );
 
 console.log('SEO files updated for', url);

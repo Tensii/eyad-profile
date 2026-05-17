@@ -18,10 +18,7 @@ const jsonld = {
 const scriptTag = `    <script type="application/ld+json">\n${JSON.stringify(jsonld, null, 2)}\n    </script>`;
 
 if (/application\/ld\+json/.test(html)) {
-  html = html.replace(
-    /\s*<script type="application\/ld\+json">[\s\S]*?<\/script>\s*/m,
-    `\n${scriptTag}\n`
-  );
+  html = html.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>\s*/m, `\n${scriptTag}\n`);
 } else {
   html = html.replace(/\n\s*<\/head>/, `\n${scriptTag}\n  </head>`);
 }
