@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eyad-profile-sigma.vercel.app/sitemap.xml
+Sitemap: https://eyad-ayoub-profile.vercel.app/sitemap.xml
