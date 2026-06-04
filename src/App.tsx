@@ -154,7 +154,9 @@ function App() {
 
       <main id="main-content" className="container">
         <section id="about" data-reveal>
-          <h2 className="section-title">&gt; ./about_me</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>about_me
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">cat about.txt</span>
           </div>
@@ -171,7 +173,9 @@ function App() {
         </section>
 
         <section id="experience" data-reveal>
-          <h2 className="section-title">&gt; ./experience</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>experience
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span>{' '}
             <span className="cmd">cd experience && tail -n +1 timeline.log</span>
@@ -267,7 +271,9 @@ function App() {
         </section>
 
         <section id="projects" data-reveal>
-          <h2 className="section-title">&gt; ./projects</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>projects
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">ls -la projects/</span>
           </div>
@@ -327,7 +333,9 @@ function App() {
 
         {/* ✅ Hall of Fame cards with CDN logos */}
         <section id="hof" data-reveal>
-          <h2 className="section-title">&gt; ./hall_of_fame</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>hall_of_fame
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span>{' '}
             <span className="cmd">curl -I https://bounty.target</span>
@@ -366,7 +374,9 @@ function App() {
         </section>
 
         <section id="certs" data-reveal>
-          <h2 className="section-title">&gt; ./certifications</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>certifications
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">verify_certs.sh</span>
           </div>
@@ -428,7 +438,9 @@ function App() {
         </section>
 
         <section id="skills" data-reveal>
-          <h2 className="section-title">&gt; ./skills</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>skills
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">./load_modules --all</span>
           </div>
@@ -481,7 +493,9 @@ function App() {
         </section>
 
         <section id="contact" data-reveal>
-          <h2 className="section-title">&gt; ./contact</h2>
+          <h2 className="section-title">
+            <span aria-hidden="true">&gt; ./</span>contact
+          </h2>
           <div className="section-cmd" aria-hidden="true">
             <span className="prompt">root@tensi:~#</span> <span className="cmd">init_comms --secure</span>
           </div>
