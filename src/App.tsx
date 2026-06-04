@@ -131,9 +131,6 @@ function App() {
                 </a>
               </div>
 
-              <div className="status">
-                <span className="indicator online" /> READY TO SECURE
-              </div>
             </div>
           </div>
 
